@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+}
+
+.container {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: #ffcc00;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+.stats div {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  border-radius: 10px;
+  min-width: 120px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin: 20px auto;
+  max-width: 450px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #5d4037;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cell:hover {
+  background-color: #6d4c41;
+  transform: translateY(-5px);
+}
+
+.cell:active {
+  transform: scale(0.95);
+}
+
+.goblin {
+  width: 80px;
+  height: 80px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.2s ease;
+}
+
+.goblin.caught {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.controls {
+  margin: 20px 0;
+}
+
+button {
+  background: #ffcc00;
+  color: #333;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background: #ffdd44;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.game-over {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  display: none;
+}
+
+.game-over h2 {
+  font-size: 3rem;
+  color: #ffcc00;
+  margin-bottom: 20px;
+}
+
+.game-over p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 500px) {
+  .game-board {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  .cell {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .goblin {
+    width: 60px;
+    height: 60px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}
