@@ -2,24 +2,34 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      # Шаг 1: Получить код из репозитория
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Шаг 2: Установить Node.js
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: '20'
           cache: 'npm'
-      - run: npm install
-      - run: npm run build
-      - name: Deploy to GitHub Pages
+
+      # Шаг 3: Установить зависимости и собрать проект
+      - name: Install and Build
+        run: |
+          npm ci
+          npm run build
+
+      # Шаг 4: Деплой собранной папки на GitHub Pages
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Указываем папку, которую собрал Webpack
           publish_dir: ./dist
-          enable_jekyll: false
-          keep_files: true
