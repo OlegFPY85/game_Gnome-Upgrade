@@ -18,4 +18,5 @@
 1. Клонируйте репозиторий:
 ```bash
 git clone https://github.com/OlegFPY85/game_Gnome-Upgrade.git
-cd game-Gnome
+
+cd game_Gnome-Upgrade
