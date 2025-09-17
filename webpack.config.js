@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: process.env.NODE_ENV === 'production' ? '/game-Gnome/' : '/',
+    publicPath:'/game_Gnome-Upgrade/',
   },
   module: {
     rules: [
@@ -43,4 +43,5 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
   },
+
 };
