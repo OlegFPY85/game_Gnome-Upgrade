@@ -13,9 +13,10 @@ export default class GameController {
     this.restartButton = document.getElementById('restartButton');
     this.gameOverElement = document.getElementById('gameOver');
     this.finalScoreElement = document.getElementById('finalScore');
-    
-    // Устанавливаем кастомный курсор-молоток
-    document.body.style.cursor = `url(${hammerImage}), auto`;
+    this.hammerElement = document.getElementById('hammerCursor');
+    this.gameBoardContainer = document.querySelector('.game-board-container');
+ 
+    this.hammerElement.style.backgroundImage = `url(${hammerImage})`;
     
     this.setupEventListeners();
   }
@@ -28,6 +29,35 @@ export default class GameController {
     this.restartButton.addEventListener('click', () => {
       this.hideGameOver();
       this.startGame();
+    });
+    
+    this.gameBoardContainer.addEventListener('mousemove', (e) => {
+      const rect = this.gameBoardContainer.getBoundingClientRect();
+      
+      if (
+        e.clientX >= rect.left && 
+        e.clientX <= rect.right && 
+        e.clientY >= rect.top && 
+        e.clientY <= rect.bottom
+      ) {
+        this.hammerElement.style.display = 'block';
+        this.hammerElement.style.left = `${e.clientX - rect.left}px`;
+        this.hammerElement.style.top = `${e.clientY - rect.top}px`;
+      } else {
+        this.hammerElement.style.display = 'none';
+      }
+    });
+    
+    this.gameBoardContainer.addEventListener('mouseleave', () => {
+      this.hammerElement.style.display = 'none';
+    });
+  
+    this.gameBoardContainer.addEventListener('mousedown', () => {
+      this.hammerElement.classList.add('clicking');
+    });
+    
+    this.gameBoardContainer.addEventListener('mouseup', () => {
+      this.hammerElement.classList.remove('clicking');
     });
     
     this.board.cells.forEach((cell) => {
@@ -55,15 +85,13 @@ export default class GameController {
     
     const currentCell = this.goblin.currentCell;
     let nextCell;
-    
-    // Выбираем следующую ячейку, отличную от текущей
+   
     do {
       nextCell = this.board.getRandomCell();
     } while (currentCell === nextCell);
     
     this.goblin.showInCell(nextCell);
     
-    // Устанавливаем таймер на скрытие гоблина
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -85,12 +113,10 @@ export default class GameController {
   
   handleCellClick(cell) {
     if (this.goblin.currentCell === cell && this.goblin.isVisible) {
-      // Проверяем, попал ли игрок по гоблину
       if (this.goblin.catchGoblin()) {
         this.score += 1;
         this.updateStats();
-        
-        // Показываем следующий гоблин
+ 
         setTimeout(() => {
           if (this.isPlaying) {
             this.showGoblin();

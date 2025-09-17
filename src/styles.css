@@ -146,6 +146,27 @@ button:active {
   margin-bottom: 30px;
 }
 
+.game-board-container {
+  position: relative;
+}
+
+.hammer-cursor {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  z-index: 10;
+  display: none;
+  transform: translate(-50%, -50%);
+}
+
+.hammer-cursor.clicking {
+  transform: translate(-50%, -50%) rotate(-30deg);
+}
+
 @media (max-width: 500px) {
   .game-board {
     grid-template-columns: repeat(4, 1fr);
