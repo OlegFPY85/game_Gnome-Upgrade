@@ -14,7 +14,7 @@ export default class GameBoard {
       const cell = document.createElement('div');
       cell.className = 'cell';
       cell.dataset.index = i;
-      this.boardElement.appendChild(cell);
+      this.boardElement.append(cell);
       this.cells.push(cell);
     }
   }

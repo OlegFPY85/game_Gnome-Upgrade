@@ -10,7 +10,7 @@ export default class Goblin {
   showInCell(cell) {
     this.hide();
     this.currentCell = cell;
-    cell.appendChild(this.element);
+    cell.append(this.element);
     this.isVisible = true;
   }
   
