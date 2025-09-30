@@ -9,7 +9,6 @@ module.exports = {
     clean: true,
     publicPath: '', 
   },
-  },
   module: {
     rules: [
       {
@@ -52,5 +51,6 @@ module.exports = {
   }
 
 };
+
 
 
