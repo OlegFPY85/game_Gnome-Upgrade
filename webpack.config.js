@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     clean: true,
+    publicPath: '/', 
   },
   module: {
     rules: [
@@ -25,7 +26,7 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif|svg)$/i,
         type: 'asset/resource',
         generator: {
           filename: 'assets/[name][ext]'
