@@ -7,7 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     clean: true,
-    publicPath: '/', 
+  //  publicPath: '/', 
   },
   module: {
     rules: [
@@ -49,4 +49,5 @@ module.exports = {
   resolve: {
     extensions: ['.js']
   }
+
 };
